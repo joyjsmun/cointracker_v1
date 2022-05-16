@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 function App() {
   const [loading,setLoading] = useState(true);
   const [coins,setCoins] = useState([])
+  const [selectedCoin,setSelectCoin] = useState("")
   const [amount,setAmount] = useState("")
   useEffect(() => {
       fetch("https://api.coinpaprika.com/v1/tickers?limit=1000")
@@ -12,21 +13,23 @@ function App() {
   },[])
 
   const handleDollars = (event) => {
-    setAmount("$ ",event.target.value)
+    setAmount(event.target.value)
+  }
+  //figure out printing coin~~~
+  const handleCoin = () => {
+   console.log(document.getElementById("coinList").value)
   }
 
-  const coinList = coins.map(coin =>
-     <option key={coin.id}>{coin.name} : ${coin.quotes.USD.price}</option>
-  )
 
   return (
    <div>
      <h1>Coin Tracker({loading? null : `${coins.length}`})</h1>
-     <input onChange={handleDollars} type="text" placeholder="How much you have?"/>
-    {loading ? <strong>Loading...</strong> : <select>
-      {coinList}
-      <hr />
+     <input onChange={handleDollars} type="number" placeholder="How much you have?"/>
+    {loading ? <strong>Loading...</strong> : <select id="coinList">
+    {coins.map(coin => <option onChange={handleCoin} key={coin.id} value={coin.name}>{coin.name} : ${coin.quotes.USD.price}</option>)}
       </select>}
+      <hr/>
+     <h3>${amount}</h3> <h3></h3>
    </div>
   );
 }
