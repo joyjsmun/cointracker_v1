@@ -10,12 +10,16 @@ function App() {
       setLoading(false)
   },[])
 
-  const coinList = coins.map(coin => <li key={coin.id}>{coin.name} : ${coin.quotes.USD.price}</li>)
+  const coinList = coins.map(coin =>
+     <option key={coin.id}>{coin.name} : ${coin.quotes.USD.price}</option>
+  )
 
   return (
    <div>
      <h1>Coin Tracker({loading? null : `${coins.length}`})</h1>
-    {loading ? <strong>Loading...</strong> : coinList}
+    {loading ? <strong>Loading...</strong> : <select>
+      {coinList}
+      </select>}
    </div>
   );
 }
