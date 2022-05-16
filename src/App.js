@@ -1,6 +1,8 @@
 function App() {
   return (
-   <div>Test</div>
+   <div>
+     <h1>Coin Tracker</h1>
+   </div>
   );
 }
 
