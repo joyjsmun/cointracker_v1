@@ -1,4 +1,9 @@
 import { useEffect, useState } from "react";
+import styled from "styled-components";
+
+const Wrapper = styled.div`
+  background-color: aqua;
+`
 
 function App() {
   const [loading,setLoading] = useState(true);
@@ -22,7 +27,7 @@ function App() {
 
 
   return (
-   <div>
+   <Wrapper>
      <h1>Coin Tracker({loading? null : `${coins.length}`})</h1>
      <input onChange={handleDollars} type="number" placeholder="How much you have?"/>
     {loading ? <strong>Loading...</strong> : <select id="coinList">
@@ -30,7 +35,7 @@ function App() {
       </select>}
       <hr/>
      <h3>${amount}</h3> <h3></h3>
-   </div>
+   </Wrapper>
   );
 }
 
