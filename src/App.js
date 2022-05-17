@@ -2,10 +2,13 @@ import { useEffect, useState } from "react";
 import styled,{keyframes} from "styled-components";
 
 
+
 const Wrapper = styled.div`
-  &:hover{
-    background-color: pink;
-  }
+  margin: auto;
+  height: 100vh;
+  width: 100vw;
+  background-color: ${props => props.theme.bgColor};
+  color:${props => props.theme.textColor};
 `
 
 
@@ -21,7 +24,7 @@ const sizeAnimation = keyframes`
 `
 
 const Title = styled.h3`
-  animation: ${sizeAnimation} 2s linear infinite
+  /* animation: ${sizeAnimation} 2s linear infinite */
 `
 
 function App() {
