@@ -1,8 +1,27 @@
 import { useEffect, useState } from "react";
-import styled from "styled-components";
+import styled,{keyframes} from "styled-components";
+
 
 const Wrapper = styled.div`
-  background-color: aqua;
+  &:hover{
+    background-color: pink;
+  }
+`
+
+
+const sizeAnimation = keyframes`
+  from{
+    color: ${(props) => props.bgColor};
+
+  }
+  to{
+    font-size: 40px;
+    color:red;
+  }
+`
+
+const Title = styled.h3`
+  animation: ${sizeAnimation} 2s linear infinite
 `
 
 function App() {
@@ -28,7 +47,7 @@ function App() {
 
   return (
    <Wrapper>
-     <h1>Coin Tracker({loading? null : `${coins.length}`})</h1>
+     <Title as="h1" bgColor="yellow">Coin Tracker({loading? null : `${coins.length}`})</Title>
      <input onChange={handleDollars} type="number" placeholder="How much you have?"/>
     {loading ? <strong>Loading...</strong> : <select id="coinList">
     {coins.map(coin => <option onChange={handleCoin} key={coin.id} value={coin.name}>{coin.name} : ${coin.quotes.USD.price}</option>)}
